@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#123b2b">
+<title>Brasil RP — Protótipo</title>
+<style>
+:root{--bg:#0c1713;--panel:#14251e;--panel2:#1b3027;--line:#294638;--text:#f2f7f3;--muted:#a9beb1;--green:#36c878;--gold:#f4c65e;--red:#ff7474}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#10251b,#0b1511 45%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+header{padding:18px 16px 12px;background:#10271d;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{display:flex;justify-content:space-between;align-items:center}.brand h1{font-size:21px;margin:0;letter-spacing:.5px}.brand small{color:var(--muted);display:block;font-size:11px;letter-spacing:1.5px}
+.pill{border:1px solid #3b7657;color:#8ef0b4;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.stat{background:#193328;border:1px solid var(--line);border-radius:12px;padding:9px}.stat span{display:block;color:var(--muted);font-size:10px}.stat b{display:block;font-size:15px;margin-top:3px}
+main{padding:14px 14px 90px;max-width:760px;margin:auto}.view{display:none}.view.active{display:block}
+h2{font-size:19px;margin:8px 0 12px}.sub{color:var(--muted);font-size:12px;margin-top:-7px;margin-bottom:14px}
+.hero{background:linear-gradient(135deg,#1d5639,#153626 65%,#263b29);border:1px solid #36734e;border-radius:17px;padding:17px;margin-bottom:13px;position:relative;overflow:hidden}
+.hero:after{content:"🇧🇷";font-size:75px;position:absolute;right:10px;bottom:0;opacity:.17}.hero strong{font-size:19px;display:block}.hero p{color:#c8dfd0;font-size:12px;max-width:75%;line-height:1.5;margin:7px 0 0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:10px}.card h3{font-size:14px;margin:0 0 6px}.card p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}.metric{font-size:20px;font-weight:800;margin-top:5px}.green{color:var(--green)}.gold{color:var(--gold)}
+button{border:0;border-radius:11px;background:var(--green);color:#082015;font-weight:800;padding:11px 13px;font-size:13px;cursor:pointer}button.secondary{background:#263e32;color:var(--text);border:1px solid #3b5b49}button:disabled{opacity:.4}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.row + .row{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.listitem{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px}
+label{display:block;color:var(--muted);font-size:12px;margin:10px 0 5px}input,select{width:100%;background:#0c1913;color:var(--text);border:1px solid #355341;border-radius:10px;padding:12px;font-size:14px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#101f18;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:10}
+nav button{background:transparent;color:var(--muted);padding:7px 2px;font-size:10px;border-radius:9px}nav button.active{background:#214432;color:#a5f3c0}nav .ico{display:block;font-size:18px;margin-bottom:3px}
+.notice{font-size:11px;color:var(--muted);line-height:1.5;padding:10px;border-left:3px solid var(--gold);background:#1d2b21;border-radius:7px;margin-top:12px}
+.tag{font-size:10px;border-radius:20px;padding:4px 7px;background:#243e30;color:#a7edbd}
+progress{width:100%;height:8px;accent-color:var(--green)}
+footer{text-align:center;color:#668171;font-size:10px;padding:18px}
+@media(min-width:600px){main{padding-top:22px}.stats{max-width:520px}.hero{padding:22px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div><small>SIMULADOR POLÍTICO • ECONÔMICO</small><h1>🇧🇷 BRASIL RP</h1></div><span class="pill">PROTÓTIPO 0.1</span></div>
+ <div class="stats">
+  <div class="stat"><span>💰 SEU DINHEIRO</span><b id="money">R$ 25.000</b></div>
+  <div class="stat"><span>🏭 EMPRESAS</span><b id="companies">0</b></div>
+  <div class="stat"><span>⭐ REPUTAÇÃO</span><b id="reputation">50/100</b></div>
+ </div>
+</header>
+<main>
+<section id="home" class="view active">
+ <div class="hero"><strong>Seu Brasil. Suas decisões.</strong><p>Construa sua carreira, abra empresas e participe da política. Cada escolha pode mudar o futuro do país.</p></div>
+ <h2>Painel nacional</h2>
+ <div class="grid">
+  <div class="card"><h3>📈 PIB simulado</h3><div class="metric" id="gdp">R$ 2,1 tri</div><p>Economia fictícia do servidor</p></div>
+  <div class="card"><h3>🗳️ Governo</h3><div class="metric" id="president">Em exercício</div><p>Presidência da República</p></div>
+  <div class="card"><h3>👥 Desemprego</h3><div class="metric">8,1%</div><p>Indicador ilustrativo</p></div>
+  <div class="card"><h3>🏛️ Congresso</h3><div class="metric" id="laws">0 leis</div><p>Projetos aprovados no protótipo</p></div>
+ </div>
+ <div class="card"><div class="row"><div><h3>📰 Central de notícias</h3><p id="news">O Brasil RP começou sua primeira simulação.</p></div><span class="tag">AO VIVO*</span></div></div>
+ <div class="notice">*Esta versão é um protótipo local: os dados ficam salvos neste aparelho. O multiplayer online será conectado em uma próxima etapa.</div>
+</section>
+<section id="map" class="view">
+ <h2>🗺️ Brasil — mapa político</h2><p class="sub">Escolha um estado para consultar sua ficha.</p>
+ <div class="card"><h3>Federação brasileira</h3><p>26 estados + Distrito Federal. Nesta primeira versão, o mapa é representado por uma lista interativa.</p></div>
+ <div id="states"></div>
+ <div id="stateInfo" class="card"><h3>Selecione um estado</h3><p>As informações estaduais aparecerão aqui.</p></div>
+</section>
+<section id="business" class="view">
+ <h2>🏭 Empresas e indústria</h2><p class="sub">Invista, produza e aumente seu patrimônio.</p>
+ <div class="card"><h3>Fundar uma fábrica</h3><p>Uma fábrica custa R$ 10.000 e gera R$ 1.500 por ciclo simulado.</p>
+ <label for="factoryName">Nome da empresa</label><input id="factoryName" maxlength="32" placeholder="Ex.: Indústrias Brasil"/>
+ <label for="factoryType">Setor industrial</label><select id="factoryType"><option>Alimentos</option><option>Automóveis</option><option>Tecnologia</option><option>Construção</option><option>Têxtil</option></select>
+ <div class="actions"><button onclick="createFactory()">Fundar fábrica — R$ 10 mil</button></div></div>
+ <h2>Suas empresas</h2><div id="companyList"></div>
+</section>
+<section id="politics" class="view">
+ <h2>🏛️ Política nacional</h2><p class="sub">Partidos, eleições e decisões públicas.</p>
+ <div class="card"><h3>Filiação partidária</h3><label for="party">Escolha seu partido</label><select id="party"><option>Partido do Desenvolvimento (PD)</option><option>Partido Social Brasileiro (PSB-RP)</option><option>Aliança Nacional (AN)</option><option>Movimento Popular (MP)</option></select><div class="actions"><button class="secondary" onclick="joinParty()">Filiar-se</button></div><p id="partyStatus">Você ainda não está filiado.</p></div>
+ <div class="card"><h3>🗳️ Eleição presidencial simulada</h3><p>Inscreva sua candidatura. A votação de demonstração usa reputação e participação fictícia.</p><div class="actions"><button onclick="runElection()">Disputar eleição</button></div><p id="electionResult">Nenhuma eleição realizada.</p></div>
+ <div class="card"><h3>📜 Congresso Nacional</h3><p>Proponha uma lei. No próximo estágio, outros jogadores poderão votar e o presidente poderá sancionar ou vetar.</p><label for="lawName">Nome do projeto de lei</label><input id="lawName" maxlength="60" placeholder="Ex.: Incentivo à indústria nacional"/><div class="actions"><button onclick="proposeLaw()">Protocolar projeto</button></div><div id="lawList"></div></div>
+</section>
+<section id="profile" class="view">
+ <h2>👤 Seu personagem</h2><p class="sub">Sua identidade no Brasil RP.</p>
+ <div class="card"><label for="playerName">Nome do personagem</label><input id="playerName" maxlength="24" placeholder="Digite seu nome"/><label for="career">Profissão inicial</label><select id="career"><option>Cidadão</option><option>Comerciante</option><option>Operário</option><option>Estudante</option><option>Empreendedor</option></select><div class="actions"><button onclick="saveProfile()">Salvar personagem</button><button class="secondary" onclick="resetGame()">Reiniciar protótipo</button></div><p id="profileStatus"></p></div>
+ <div class="card"><h3>O que vem depois?</h3><p>Contas online, servidores, chat, estados com economia própria, eleições multiplayer, Senado, Câmara, governadores, diplomacia e mercado entre jogadores.</p></div>
+</section>
+<footer>BRASIL RP • Protótipo jogável 0.1 • Dados locais neste aparelho</footer>
+</main>
+<nav>
+ <button class="active" data-view="home" onclick="show('home',this)"><span class="ico">🏠</span>Início</button>
+ <button data-view="map" onclick="show('map',this)"><span class="ico">🗺️</span>Brasil</button>
+ <button data-view="business" onclick="show('business',this)"><span class="ico">🏭</span>Empresas</button>
+ <button data-view="politics" onclick="show('politics',this)"><span class="ico">🏛️</span>Política</button>
+ <button data-view="profile" onclick="show('profile',this)"><span class="ico">👤</span>Perfil</button>
+</nav>
+<script>
+const initial={money:25000,companies:[],reputation:50,laws:[],party:"",name:"",career:"Cidadão",elections:0,gdp:2.1};
+let state=JSON.parse(localStorage.getItem("brasilrp_save")||"null")||structuredClone(initial);
+const states=["Acre","Alagoas","Amapá","Amazonas","Bahia","Ceará","Distrito Federal","Espírito Santo","Goiás","Maranhão","Mato Grosso","Mato Grosso do Sul","Minas Gerais","Pará","Paraíba","Paraná","Pernambuco","Piauí","Rio de Janeiro","Rio Grande do Norte","Rio Grande do Sul","Rondônia","Roraima","Santa Catarina","São Paulo","Sergipe","Tocantins"];
+function save(){localStorage.setItem("brasilrp_save",JSON.stringify(state));render()}
+function money(n){return n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0})}
+function render(){
+ document.getElementById("money").textContent=money(state.money);
+ document.getElementById("companies").textContent=state.companies.length;
+ document.getElementById("reputation").textContent=state.reputation+"/100";
+ document.getElementById("laws").textContent=state.laws.filter(x=>x.approved).length+" leis";
+ document.getElementById("president").textContent=state.president||"Em exercício";
+ document.getElementById("gdp").textContent="R$ "+state.gdp.toFixed(2).replace(".",",")+" tri";
+ document.getElementById("companyList").innerHTML=state.companies.length?state.companies.map((c,i)=>`<div class="listitem"><div class="row"><b>🏭 ${esc(c.name)}</b><span class="tag">${esc(c.type)}</span></div><p>Rendimento por ciclo: R$ 1.500</p><div class="actions"><button onclick="collect(${i})">Receber rendimento</button></div></div>`).join(""):'<div class="card"><p>Você ainda não possui empresas.</p></div>';
+ document.getElementById("lawList").innerHTML=state.laws.map(l=>`<div class="row"><span>📜 ${esc(l.name)}</span><span class="tag">${l.approved?"Aprovada":"Em análise"}</span></div>`).join("");
+ document.getElementById("partyStatus").textContent=state.party?"Filiado a: "+state.party:"Você ainda não está filiado.";
+ document.getElementById("playerName").value=state.name;document.getElementById("career").value=state.career;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function show(id,btn){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
+function createFactory(){let name=document.getElementById("factoryName").value.trim(),type=document.getElementById("factoryType").value;if(!name)return alert("Digite um nome para sua fábrica.");if(state.money<10000)return alert("Dinheiro insuficiente! Você precisa de R$ 10.000.");state.money-=10000;state.companies.push({name,type});state.reputation=Math.min(100,state.reputation+2);document.getElementById("factoryName").value="";document.getElementById("news").textContent="Uma nova fábrica foi fundada: "+name+".";save();alert("Fábrica criada com sucesso!")}
+function collect(i){state.money+=1500;document.getElementById("news").textContent="Sua empresa "+state.companies[i].name+" gerou R$ 1.500.";save()}
+function joinParty(){state.party=document.getElementById("party").value;state.reputation=Math.min(100,state.reputation+1);save();alert("Filiação registrada!")}
+function runElection(){state.elections++;let score=Math.max(5,Math.min(95,Math.round(state.reputation*0.7+Math.random()*25)));if(score>=50){state.president=state.name||"Candidato independente";state.reputation=Math.min(100,state.reputation+5);document.getElementById("electionResult").textContent="Você venceu a eleição simulada com "+score+"% dos votos!";}else{state.reputation=Math.max(0,state.reputation-2);document.getElementById("electionResult").textContent="Você recebeu "+score+"% dos votos e não venceu. Faça alianças e melhore sua reputação."}document.getElementById("news").textContent="Resultado da eleição presidencial simulada divulgado.";save()}
+function proposeLaw(){let n=document.getElementById("lawName").value.trim();if(!n)return alert("Escreva o nome do projeto.");state.laws.push({name:n,approved:false});state.reputation=Math.min(100,state.reputation+1);document.getElementById("lawName").value="";document.getElementById("news").textContent="Novo projeto protocolado: "+n+".";save();alert("Projeto protocolado. A votação multiplayer será implementada depois.")}
+function saveProfile(){state.name=document.getElementById("playerName").value.trim()||"Cidadão";state.career=document.getElementById("career").value;document.getElementById("profileStatus").textContent="Personagem salvo: "+state.name+" — "+state.career;save()}
+function resetGame(){if(confirm("Tem certeza? Todo o progresso local será apagado.")){localStorage.removeItem("brasilrp_save");state=structuredClone(initial);location.reload()}}
+function initStates(){document.getElementById("states").innerHTML=states.map((s,i)=>`<div class="listitem" onclick="selectState(${i})"><div class="row"><b>${s}</b><span class="tag">${i===6?"Capital federal":"Estado"}</span></div><p>Toque para consultar informações</p></div>`).join("")}
+function selectState(i){let s=states[i];document.getElementById("stateInfo").innerHTML=`<h3>${s}</h3><p>Unidade federativa do Brasil RP. População, orçamento, governador e produção estadual serão adicionados na próxima versão.</p>`}
+initStates();render();
+</script>
+</body></html>

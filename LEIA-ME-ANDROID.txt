@@ -1,0 +1,32 @@
+BRASIL RP 0.2 — PROJETO ANDROID
+
+O QUE É ESTE PACOTE
+Este é o projeto-fonte Android que empacota o protótipo 0.1 em um aplicativo nativo com WebView. Ele preserva a interface e as funções locais já existentes. O APK ainda precisa ser compilado; este ambiente não possui Android SDK/Gradle instalados, portanto não seria correto entregar um arquivo .apk falso.
+
+COMO GERAR O APK PELO CELULAR (SEM PC)
+A forma mais simples deste pacote é usar o GitHub Actions, que compila o APK na nuvem:
+1. No navegador do Android, entre em https://github.com e crie uma conta ou entre na sua.
+2. Crie um repositório novo chamado Brasil-RP. Pode deixar como Public para facilitar este primeiro teste.
+3. Envie todos os arquivos e pastas deste ZIP para a raiz do repositório. É importante enviar também a pasta oculta .github/workflows (se não aparecer no seletor, ative a opção de mostrar arquivos ocultos ou envie pelo site do GitHub usando Add file > Upload files).
+4. Abra a aba Actions do repositório.
+5. Se aparecer a confirmação de workflows, autorize. Abra “Construir APK do Brasil RP” e toque em “Run workflow”.
+6. Aguarde o processo ficar verde (sucesso). Abra a execução concluída e procure “Artifacts”.
+7. Baixe “Brasil-RP-APK-debug.zip”, extraia e toque no arquivo app-debug.apk para instalar.
+8. Se o Android bloquear, autorize “Instalar apps desconhecidos” para o navegador/gerenciador de arquivos que você usou. Instale apenas o APK que você mesmo gerou no seu repositório.
+
+SE O GITHUB NÃO MOSTRAR O WORKFLOW
+Confirme que o arquivo está exatamente em .github/workflows/build-apk.yml e que a branch principal se chama main. Depois abra Actions novamente.
+
+O QUE ESTA VERSÃO TEM
+- Aplicativo Android em tela de jogo, sem precisar abrir o HTML manualmente.
+- Painel, estados, perfil, fábricas, dinheiro, partido, eleição simulada e projetos de lei do protótipo 0.1.
+- Salvamento local no aparelho por armazenamento do WebView.
+
+O QUE AINDA NÃO TEM
+- Cadastro/login online.
+- Multiplayer entre celulares.
+- Servidor ou banco de dados compartilhado.
+- APK assinado para publicação na Play Store. O APK debug serve para teste pessoal.
+
+REQUISITOS TÉCNICOS
+Android mínimo: 6.0 (API 23). Compilação: Android Gradle Plugin 8.7.3, Gradle 8.9 e Java 17.
